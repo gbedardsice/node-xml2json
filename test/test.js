@@ -16,7 +16,7 @@ fs.readdir(fixturesPath, function(err, files) {
             var data = fs.readFileSync(fixturesPath + '/' + file);
             var result = parser.toJson(data, {reversible: true});
 
-            var  data2 =  fs.readFileSync(fixturesPath + '/' + file);
+            var data2 =  fs.readFileSync(fixturesPath + '/' + file);
             if (file.indexOf('spacetext') >= 0) {
                 result = parser.toJson(data2, {trim: false, coerce: false});
             } else if (file.indexOf('coerce') >= 0) {
@@ -27,6 +27,8 @@ fs.readdir(fixturesPath, function(err, files) {
                 result = parser.toJson(data2, {coerce: false, trim: true, sanitize: false});
             } else if (file.indexOf('array-notation') >= 0) {
                 result = parser.toJson(data2, {arrayNotation: true});
+            } else if (file.indexOf('attr-key') >= 0) {
+                result = parser.toJson(data2, {reversible: true});
             } else {
                 result = parser.toJson(data2, {trim: false});
             }
